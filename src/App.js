@@ -2,14 +2,19 @@ import { useState } from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite } from "./store/actions";
 
 function App() {
   const [sira, setSira] = useState(0);
-  const favMovies = [];
+  const favMovies = useSelector((store) => store.favorites);
+  const movies = useSelector((store) => store.movies);
 
   function sonrakiFilm() {
     setSira(sira + 1);
   }
+
+  const dispatch = useDispatch();
 
   return (
     <div className="wrapper max-w-2xl mx-auto">
@@ -32,7 +37,13 @@ function App() {
             >
               Sıradaki
             </button>
-            <button className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white">
+            <button className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"
+            onClick={() => {
+              dispatch(addFavorite(movies[sira]))
+              console.log("Favoriye ekle butonu tıklandı.")
+              }}
+            
+            >
               Listeme ekle
             </button>
           </div>

@@ -20,7 +20,7 @@ Dünkü projede, büyük bir film yönetim uygulaması ile çalıştınız. Film
 
 ### Görev 2: Proje Gereksinimleri
 
-Proje `movies.js` dosyasında yer alan filmleri sırayla görüntüleyebildiniz ve isterseniz görüntülediğiniz filmi izleme listenize eklemenize, eklediklerinizi çıkarmanıza izin veren bir uygulama.
+Proje `movies.js` dosyasında yer alan filmleri sırayla görüntüleyebildiğiniz ve isterseniz görüntülediğiniz filmi izleme listenize eklemenize, eklediklerinizi çıkarmanıza izin veren bir uygulama.
 
 - Filmler arasında "Sıradaki" butonu ile dolaşılabilmeli,
 - Listeye eklenen filmler anasayfada görüntülenmemeli.
