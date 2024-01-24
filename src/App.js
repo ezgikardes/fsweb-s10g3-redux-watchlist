@@ -11,8 +11,13 @@ function App() {
   const movies = useSelector((store) => store.movies);
 
   function sonrakiFilm() {
-    setSira(sira + 1);
-  }
+    setSira(sira + 1 <= movies.length -1 ? sira + 1 : 0 ); 
+  } //sıra dizinin sonuna geldiğinde hata vermesin diye bir koşul yazdık. eğer sira'yi bir artırdığında movies dizisinin son elemanından küçük ya da son elemanına eşit oluyorsa sira'yi bir artır, değilse ilk elemana git.
+
+  function oncekiFilm() {
+    setSira(sira - 1 >= 0 ? sira -1 : movies.length -1);
+  } //sıra -1'e düşmesin diye bir koşul yazdık. sira 0'dan büyük ya da 0'a eşitse sira -1'i işlet, değilse sonucumuz movies dizisinin son elemanı olacak. 
+
 
   const dispatch = useDispatch();
 
@@ -29,14 +34,26 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Movie sira={sira} />
-
           <div className="flex gap-3 justify-end py-3">
+          <button
+              onClick={()=> {setSira(0)}}
+              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              İlk Film
+            </button>
+          <button
+              onClick={oncekiFilm}
+              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              Önceki
+            </button>
             <button
               onClick={sonrakiFilm}
               className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
             >
-              Sıradaki
+              Sonraki
             </button>
+           
             <button className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"
             onClick={() => {
               dispatch(addFavorite(movies[sira]))
